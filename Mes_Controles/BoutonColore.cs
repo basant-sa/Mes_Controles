@@ -62,9 +62,52 @@ namespace Mes_Controles
 
 
 
+        protected override void OnPaint(PaintEventArgs e)
+        {
+             
+            Bitmap bmp = new Bitmap(this.Width, this.Height);
+
+             
+            Graphics g = Graphics.FromImage(bmp);
+         
+            Color colorGauche = Color.FromArgb(tGauche, cGauche);
+            Color colorDroite = Color.FromArgb(tDroite, cDroite);
+
+           
+            LinearGradientBrush brush = new LinearGradientBrush(
+                new Rectangle(0, 0, this.Width, this.Height),   
+                colorGauche,    
+                colorDroite,     
+                LinearGradientMode.Horizontal  
+            );
+
+            g.FillRectangle(brush, 0, 0, this.Width, this.Height);
+            SizeF textSize = g.MeasureString(this.Text, this.Font);
+
+            float x = (this.Width - textSize.Width) / 2;
+            float y = (this.Height - textSize.Height) / 2;
+
+            g.DrawString(
+                this.Text,             
+                this.Font,              
+                Brushes.White,          
+                x, y                    
+            );
+
+            e.Graphics.DrawImage(bmp, 0, 0);
+
+            g.Dispose();
+            bmp.Dispose();
+            brush.Dispose();
+
+            base.OnPaint(e);
+        }
 
 
 
 
-    }
+
+
+     
+    }   
 }
