@@ -57,7 +57,7 @@ namespace Mes_Controles
         public int TDroite
         {
             get { return tDroite; }
-            set { if (value >= 0 && value <= 255) { tDroite = value; Invalidate(); } }
+            set { if (value >= 0 && value <= 255) { tDroite = value; Invalidate();  } }
         }
 
 
